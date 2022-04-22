@@ -8,7 +8,6 @@ const userRepository = AppDataSource.getRepository(User);
 
 export const all = async (request: Request, response: Response, next: NextFunction) => {
 	const getAll = await userRepository.find();
-	console.log(getAll);
 	return response.json(getAll);
 };
 
