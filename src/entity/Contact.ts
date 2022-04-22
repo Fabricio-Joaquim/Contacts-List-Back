@@ -6,27 +6,27 @@ export class Contact {
     @PrimaryGeneratedColumn('uuid')
     	id: string;
 
-    @Column()
-    	nome: string;
+    @Column({nullable: false})
+    	name: string;
 
-    @Column()
-    	sobrenome: string;
+    @Column({nullable: false})
+    	lastname: string;
 
-    @Column()
-    	telefone: string;
+    @Column({nullable: false, unique: true,})
+    	phone: string;
     
-    @Column()
-    	dataDeNascimento: Date;
+    @Column({nullable: false})
+    	dateBorn: Date;
     
-    @Column()
-    	endereco: string;
+    @Column({nullable: false})
+    	address: string;
 
-    @Column()
+    @Column({nullable: false})
     	email: string;
 
     @ManyToOne(() => User, (user) => user.contacts,{nullable: false})
     	user_id: User;
-    
+            
     @CreateDateColumn()
     	created_at: Date;
 

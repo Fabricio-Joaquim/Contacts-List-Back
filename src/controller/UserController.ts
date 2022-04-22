@@ -46,7 +46,6 @@ export const login = async(request: Request, response: Response) => {
 		if(!isPasswordMatch){
 			return response.status(401).json({message: 'Password not match'});
 		}
-		console.log(process.env.JWT_SECRET);
 		const token = jwt.sign({id: findOne.id}, process.env.JWT_SECRET || '11', {expiresIn: '1d'});
 	
 		return response.json({
@@ -59,7 +58,6 @@ export const login = async(request: Request, response: Response) => {
 			message: 'An error has occurred'
 		});
 	}
-
 };
 
 export const save = async (request: Request, response: Response) => {
@@ -81,7 +79,8 @@ export const save = async (request: Request, response: Response) => {
 };
 export const update = async (request: Request, response: Response) => {
 	try {	
-		const {id} = request.params;
+		console.log(request.body, request.userId);
+		const id:any = request.userId;
 		const update = await userRepository.update(id,request.body);
 		if(update.affected===1){
 			const findOne = await userRepository.findOneBy({id});

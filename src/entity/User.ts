@@ -8,7 +8,7 @@ export class User {
     @PrimaryGeneratedColumn('uuid')
     	id: string;
 
-    @Column({unique: true})
+    @Column({unique: true, nullable: false})
     	email: string;
         
     @CreateDateColumn()
@@ -17,7 +17,7 @@ export class User {
     @OneToMany(() => Contact, (contact) => contact.user_id)
     	contacts: Contact[];
    
-    @Column()
+    @Column({nullable: false})
     	password: string;
 
     @BeforeInsert()

@@ -11,13 +11,16 @@ routes.get('/', (req: Request, res: Response) => {
 
 routes.get('/users/:id', one);
 routes.post('/users', save);
+routes.put('/users',authMiddleware, update);
 routes.delete('/users/:id', remove);
 routes.get('/users', all);
-routes.put('/users/:id', update);
-routes.post('/validate', login);
-routes.post('/contact',authMiddleware, Contact.save);
-routes.put('/contact/:id',authMiddleware, Contact.update);
-routes.delete('/contact/:id',authMiddleware, Contact.remove);
-routes.get('/contact', Contact.all);
+
+routes.post('/login', login);
+
+routes.get('/contact', Contact.getAllContact);
+routes.post('/contact',authMiddleware, Contact.saveContact);
+routes.put('/contact/:id',authMiddleware, Contact.updateContact);
+routes.delete('/contact/:id',authMiddleware, Contact.removeContact);
 
 export default routes;
+

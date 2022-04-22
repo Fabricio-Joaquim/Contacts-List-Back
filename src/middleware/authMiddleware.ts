@@ -10,14 +10,13 @@ interface returnJWT {
 
 const { authorization } = req.headers;
 if(!authorization){
-	return res.status(401).json({message: 'Unauthorized'});
+	return res.status(401).json({message: 'Unauthorized1'});
 }
 const token = authorization.replace('Bearer ', '').trim();
-
 try {
 	const {id} = jwt.verify(token, process.env.JWT_SECRET || '11') as returnJWT;
-	console.log(id);
 	req.userId = id;
+	
 	next();
 } catch (error) {
 	return res.status(401).json({message: 'Unauthorized'});
