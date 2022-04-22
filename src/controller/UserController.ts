@@ -3,9 +3,6 @@ import { User } from '../entity/User';
 import {AppDataSource} from '../connection';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';       
-dotenv.config();
-
 
 const userRepository = AppDataSource.getRepository(User);
 
