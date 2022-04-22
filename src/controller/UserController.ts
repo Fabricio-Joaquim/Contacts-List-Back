@@ -21,6 +21,9 @@ export const one = async(request: Request, response: Response, next: NextFunctio
 };
 export const login = async(request: Request, response: Response, next: NextFunction) => {
 	const {email, password} = request.body;
+	if (!email || !password) {
+		return response.status(400).json({message: 'Email and password are required'});
+	}
 	const findOne = await userRepository.findOne({where:{email}});
 	if(!findOne){
 		return response.status(404).json({message: 'User not found'});
